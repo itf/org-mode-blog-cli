@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2022-07-23 Sat 06:58 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quick Start</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="ivanaf">
+<link rel="stylesheet" type="text/css" href="css/org.css"/>
+<link rel="icon" href="ico/favicon.ico" type="image/x- icon">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<div class="head">
+<div class="title">
+<p>
+<a href="quick_start.html">org-mode-blog-cli</a>
+</p>
+
+</div>
+
+<menu>
+<ul class="org-ul">
+<li><a href="quick_start.html">Home</a></li>
+<li><a href="macros.html">Macros</a></li>
+<li><a href="index.html">Index</a></li>
+</ul>
+</menu>
+
+</div>
+
+<p>
+ </p><h1>
+Quick Start
+ </h1><p>
+</p>
+
+<p>
+<span class=page-date> <small>
+2022-07-23, updated 2022-07-23 &#x2014; <a href='index.html#instructions' class='instructions tagbutton'>instructions</a> <a href='index.html#macros' class='macros tagbutton'>macros</a> <a href='index.html#foo' class='foo tagbutton'>foo</a>  &nbsp  <a href="macros.html">⇦Macros</a> &#x2013; <a href="index.html">index⇨</a> 
+</small> </span> 
+</p>
+<nav id="table-of-contents">
+<input id="toggle-toc" style="display: none; visibility: hidden;" type="checkbox">
+<label for="toggle-toc">
+ <h2> <b> Table of Contents </b> </h2>
+ </label>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#what_is">1. What is?</a></li>
+<li><a href="#how_to_use">2. How to use</a></li>
+<li><a href="#how_to_use_from_emacs">3. How to use from emacs</a></li>
+<li><a href="#tags">4. Tags?</a></li>
+<li><a href="#macros">5. Macros</a></li>
+<li><a href="#convenience">6. Convenience</a></li>
+</ul>
+</div>
+</nav> 
+<div id="outline-container-what_is" class="outline-2">
+<h2 id="what_is"><span class="section-number-2">1</span> What is?</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+This script converts a single org-mode file into a static website. It converts each heading into a separate file.
+</p>
+
+<p>
+Every linked file will be hard linked to EXTENSION/FILE.EXTENSION and all the links in the org file export will be fixed. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-how_to_use" class="outline-2">
+<h2 id="how_to_use"><span class="section-number-2">2</span> How to use</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Clone this file and create new headings, or add 2 new headings to your file, one tagged ":header:noexport:" and another ":footer". Headings are the top level sections, i.e. create "* header" and "* footer".  Those 2 headings cannot have property drawers.
+</p>
+
+<p>
+Then, modify the first few lines of the export.el script to add the information about your blog and the name of the page that will contain all the tags. Then:
+</p>
+
+<p>
+To export the new changed files
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">exporter.el SOURCE DESTINATION
+</pre>
+</div>
+
+<p>
+To export every file:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">exporter.el SOURCE DESTINATION t
+</pre>
+</div>
+
+<p>
+The script will deal with all the linked files you have
+</p>
+</div>
+</div>
+<div id="outline-container-how_to_use_from_emacs" class="outline-2">
+<h2 id="how_to_use_from_emacs"><span class="section-number-2">3</span> How to use from emacs</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+if you load the file, 2 new interactive functions will be defined:
+</p>
+<div class="org-src-container">
+<pre class="src src-el">(org-export-head)
+(org-export-head-reexport)
+</pre>
+</div>
+
+<p>
+Call the first if you want to only publish the headings that had changes, and the second if you want to recompile all.
+</p>
+</div>
+</div>
+<div id="outline-container-tags" class="outline-2">
+<h2 id="tags"><span class="section-number-2">4</span> Tags?</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+So far the only tags we use are:  header, noexport, reexport and footer.
+</p>
+
+<p>
+Put a header tag to mark what is the header that should be copied to every page.
+</p>
+
+<p>
+Put a footer tag to mark what should be copied to every page right after the content.
+</p>
+
+<p>
+Mark something with reexport to always reexport something even if there is no internal change (example, the index).
+</p>
+
+<p>
+Put the noexport tag to state that some heading should not become a page. The 
+</p>
+</div>
+</div>
+<div id="outline-container-macros" class="outline-2">
+<h2 id="macros"><span class="section-number-2">5</span> Macros</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+You can use the macros  (# # # MACRO # # #), a word surrounded by 3 pound signs with no spaces., which will be replaced with that particular headline property taken from the drawer.
+</p>
+
+<p>
+There are also some "universal macros", INDEX-WITH-DATES, TAG-WITH-DATES, where TAG is any of the tags used in the file. As well as INDEX or TAG.
+</p>
+
+<p>
+You can also use ALL-TAGS to create a file with all tags
+</p>
+
+<p>
+You can see them in use in <a href="macros.html">macros.html</a>
+</p>
+</div>
+</div>
+<div id="outline-container-convenience" class="outline-2">
+<h2 id="convenience"><span class="section-number-2">6</span> Convenience</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+I recommend creating a publish folder next to the folder of the website and use
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git worktree add  ../publish/ gh-pages 
+</pre>
+</div>
+
+<p>
+You may want to have these in your org file, so you can simply click on them in order to publish.
+  <a href=" ./exporter.el blog.org ../publish/"> ./exporter.el blog.org ../publish/</a>
+  <a href=" ./exporter.el blog.org ../publish/ t"> ./exporter.el blog.org ../publish/ t</a>
+<a href="(revert-buffer)">(revert-buffer)</a>
+</p>
+</div></div>
+<br>
+<div class="comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ivanaf'; // Required - Replace '<example>' with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    var showComments = function() {
+    var button = document.getElementById('comment-button')
+        button.style.display = 'none'
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        };
+    </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<button id="comment-button" onclick="showComments()">Show comments</button>
+</div>
+<div><div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Ivan Tadeu Ferreira Antunes Filho</p>
+<p class="date">Date: 2022-07-23 Sat 06:58</p>
+<p class="author">Github:  <a href="https://github.com/itf/">github.com/itf</a></p>
+<p class="creator">Made with <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="https://orgmode.org">Org</a> mode 9.3) and <a href="https://github.com/itf/org-export-head">Org export head</a> </p>
+</div>
+</body>
+</html>
